@@ -1,0 +1,104 @@
+using System;
+class Calcolatrice
+{
+    static void Addizione()
+    {
+        Console.WriteLine("Quanti numeri vuoi sommare?");
+        int numeri = Convert.ToInt32(Console.ReadLine());
+        int risultato = 0;
+        for (int i = 0; i < numeri; i++)
+        {
+            Console.WriteLine("Inserire numero");
+            int nummolt = Convert.ToInt32(Console.ReadLine());
+            risultato = nummolt + risultato;
+            Console.WriteLine(risultato);
+        }
+    }
+    static void Sottrazione()
+    {
+        Console.WriteLine("Quanti numeri vuoi sottrarre? ");
+        int numeri = Convert.ToInt32(Console.ReadLine());
+        double numsot, bas;
+        Console.WriteLine("inserire numero");
+        bas = Convert.ToDouble(Console.ReadLine());
+        for (int i = 1; i < numeri; i++)
+        {
+            Console.WriteLine("inserire numero");
+            numsot = Convert.ToDouble(Console.ReadLine());
+            bas = bas - numsot ;
+            Console.WriteLine(bas);
+        }
+
+    }
+    static void Moltiplicazione()
+    {
+        Console.WriteLine("Quanti numeri vuoi moltiplicare?");
+        int numeri = Convert.ToInt32(Console.ReadLine());
+        int risultato = 1;
+        for (int i = 0; i < numeri; i++)
+        {
+            Console.WriteLine("Inserire numero");
+            int nummolt = Convert.ToInt32(Console.ReadLine());
+            risultato = nummolt * risultato;
+            Console.WriteLine(risultato);
+        }
+    }
+    static void Divisione()
+    {
+        int risultato;
+        Console.WriteLine("inserire dividendo");
+        int dividendo = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("inseire divisore");
+        int divisore = Convert.ToInt32(Console.ReadLine());
+        risultato = dividendo / divisore;
+        Console.WriteLine(risultato);
+    }
+    static void Potenza()
+    {
+        int risultato, espo, basee;
+        Console.WriteLine("Scegliere la base ");
+        basee = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Scegliere l'esponenete ");
+        espo = Convert.ToInt32(Console.ReadLine());
+        risultato = basee ^ espo;
+        Console.WriteLine(risultato);
+    }
+    static void Radice()
+    {
+        Console.WriteLine("scegliere numero ");
+        double numero = Convert.ToDouble(Console.ReadLine());
+        Console.Write(Math.Sqrt(numero));
+    }
+    static void Main()
+    {
+        Console.WriteLine("Scegliere un valore da 1 a 6");
+        Console.WriteLine("Addizione 1");
+        Console.WriteLine("Sottrazione 2");
+        Console.WriteLine("Moltiplicazione 3");
+        Console.WriteLine("Divisione 4");
+        Console.WriteLine("Potenza 5");
+        Console.WriteLine("Radice Quadrata 6");
+        int menu = Convert.ToInt32(Console.ReadLine());
+        switch (menu)
+        {
+            case 1:
+                Addizione();
+                break;
+            case 2:
+                Sottrazione();
+                break;
+            case 3:
+                Moltiplicazione();
+                break;
+            case 4:
+                Divisione();
+                break;
+            case 5:
+                Potenza();
+                break;
+            case 6:
+                Radice();
+                break;
+        }
+    }
+}
