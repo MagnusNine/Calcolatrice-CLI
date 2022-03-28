@@ -1,5 +1,4 @@
 using System;
-
 class calcolatrice
 {
     static void Continuo(double x)
@@ -68,58 +67,66 @@ class calcolatrice
         }
     }
     static void Potenza(double x)
+    {
+        Console.WriteLine("Scegliere l'esponenete ");
+        int espo = Convert.ToInt32(Console.ReadLine());
+        for (int i = 1; i < espo; i++)
         {
-            Console.WriteLine("Scegliere l'esponenete ");
-            int espo = Convert.ToInt32(Console.ReadLine());
-            for (int i = 1; i < espo; i++)
-            {
-                x *= x;
-                Console.WriteLine(x);
-            }
+            x *= x;
+            Console.WriteLine(x);
+        }
 
-            Continuo(x);
-        }
-        static void Radice(double x)
+        Continuo(x);
+    }
+    static void Radice(double x)
+    {
+        Console.WriteLine(Math.Sqrt(x));
+        Continuo(x);
+    }
+    static void Operazioni(double x)
+    {
+        Console.WriteLine("Scegliere un numero da 1 a 6");
+        Console.WriteLine("1 Addizione");
+        Console.WriteLine("2 Sottrazione");
+        Console.WriteLine("3 Moltiplicazione");
+        Console.WriteLine("4 Divisione");
+        Console.WriteLine("5 Potenza");
+        Console.WriteLine("6 Radice");
+        int menu = Convert.ToInt32(Console.ReadLine());
+        switch (menu)
         {
-            Console.WriteLine(Math.Sqrt(x));
-            Continuo(x);
-        }
-        static void Operazioni(double x)
-        {
-            Console.WriteLine("Scegliere un numero da 1 a 6");
-            Console.WriteLine("1 Addizione");
-            Console.WriteLine("2 Sottrazione");
-            Console.WriteLine("3 Moltiplicazione");
-            Console.WriteLine("4 Divisione");
-            Console.WriteLine("5 Potenza");
-            Console.WriteLine("6 Radice");
-            int menu = Convert.ToInt32(Console.ReadLine());
-            switch (menu)
-            {
-                case 1:
-                    Addizione(x);
-                    break;
-                case 2:
-                    Sottrazione(x);
-                    break;
-                case 3:
-                    Moltiplicazione(x);
-                    break;
-                case 4:
-                    Divisione(x);
-                    break;
-                case 5:
-                    Potenza(x);
-                    break;
-                case 6:
-                    Radice(x);
-                    break;
-            }
-        }
-        static void Main()
-        {
-            Console.WriteLine("Inserire primo numero");
-            double x = Convert.ToDouble(Console.ReadLine());
-            Operazioni(x);
+            case 1:
+                Addizione(x);
+                break;
+            case 2:
+                Sottrazione(x);
+                break;
+            case 3:
+                Moltiplicazione(x);
+                break;
+            case 4:
+                Divisione(x);
+                break;
+            case 5:
+                Potenza(x);
+                break;
+            case 6:
+                Radice(x);
+                break;
         }
     }
+    static void Main(string[] args)
+    {
+        double x;
+        Console.WriteLine("Inserire primo numero");
+        string y = Console.ReadLine();
+        if (double.TryParse(y, out x))
+        {
+            Operazioni(x);
+        }
+        else
+        {
+            Console.WriteLine("numero non valido");
+        }
+    }
+}
