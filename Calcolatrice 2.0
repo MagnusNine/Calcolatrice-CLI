@@ -1,13 +1,13 @@
 using System;
 class calcolatrice
 {
-    static void Continuo(double x)
+    static void Continuo(double x, string y, double num)
     {
         Console.WriteLine("Vuoi continuare? [si/no]");
         string s = Console.ReadLine();
         if (s == "si")
         {
-            Operazioni(x);
+            Operazioni(x,y,num);
         }
         else if (s == "no")
         {
@@ -15,76 +15,106 @@ class calcolatrice
             return;
         }
     }
-    static void Addizione(double x)
-    {
+    static void Addizione(double x, string y, double num)
+    { 
         Console.WriteLine("Inserire numero da sommare");
-        int numeri = Convert.ToInt32(Console.ReadLine());
-        x = x + numeri;
-        Console.WriteLine(x);
-        Continuo(x);
-    }
-    static void Sottrazione(double x)
-    {
-        Console.WriteLine("inserire numero da sottrarre");
-        double num = Convert.ToDouble(Console.ReadLine());
-        x = x - num;
-        Console.WriteLine(x);
-        Continuo(x);
-
-    }
-    static void Moltiplicazione(double x)
-    {
-
-        Console.WriteLine("Inserire numero da moltiplicare");
-        double num = Convert.ToDouble(Console.ReadLine());
-        x = x * num;
-        Console.WriteLine(x);
-        Continuo(x);
-
-    }
-    static void Divisione(double x)
-    {
-        double a = 0;
-        Console.WriteLine("inseire divisore");
-        double divisore = Convert.ToInt32(Console.ReadLine());
-        if (divisore == 0)
+        y = Console.ReadLine();
+        if (double.TryParse(y, out num))
         {
-            while (a == 0)
-            {
-                Console.WriteLine("numero non valido, inserire un'altro numero");
-                a = Convert.ToDouble(Console.ReadLine());
-                divisore = a;
-            }
-            x = x / divisore;
+            x =+ num;
             Console.WriteLine(x);
-            Continuo(x);
+            Continuo(x,y,num);
         }
         else
         {
-            x = x / divisore;
-            Console.WriteLine(x);
-            Continuo(x);
+            Console.WriteLine("Numero non conforme");
         }
     }
-    static void Potenza(double x)
+    static void Sottrazione(double x, string y, double num)
     {
+        Console.WriteLine("inserire numero da sottrarre");
+        y = Console.ReadLine();
+        if (double.TryParse(y, out num))
+        {
+            x = x - num;
+            Console.WriteLine(x);
+            Continuo(x,y,num);
+        }
+        else
+        {
+            Console.WriteLine("numero non corretto");
+        }
+    }
+    static void Moltiplicazione(double x, string y, double num)
+    {
+        Console.WriteLine("Inserire numero da moltiplicare");
+        y = Console.ReadLine();
+        if (Double.TryParse(y, out num))
+        {
+            x = x * num;
+            Console.WriteLine(x);
+            Continuo(x,y,num);
+        }
+        else
+        {
+            Console.WriteLine("numero non valido");
+        }
+    }
+    static void Divisione(double x, string y, double num)
+    {
+        double a = 0, divisore;
+        Console.WriteLine("inseire divisore");
+        y = Console.ReadLine();
+        if (Double.TryParse(y, out divisore))
+        {
+            if (divisore == 0)
+            {
+                while (a == 0)
+                {
+                    Console.WriteLine("numero non valido, inserire un'altro numero");
+                    a = Convert.ToDouble(Console.ReadLine());
+                    divisore = a;
+                }
+                x = x / divisore;
+                Console.WriteLine(x);
+                Continuo(x,y,num);
+            }
+            else
+            {
+                x = x / divisore;
+                Console.WriteLine(x);
+                Continuo(x,y,num);
+            }
+        }
+        else
+        {
+            Console.WriteLine("numero non valido");
+        }
+    }
+    static void Potenza(double x, string y, double num)
+    {
+        double espo;
         Console.WriteLine("Scegliere l'esponenete ");
-        int espo = Convert.ToInt32(Console.ReadLine());
+        y = Console.ReadLine();
+        if (double.TryParse(y, out espo))
         for (int i = 1; i < espo; i++)
         {
             x *= x;
             Console.WriteLine(x);
         }
-
-        Continuo(x);
+        Continuo(x,y,num);
     }
-    static void Radice(double x)
+    static void Radice(double x, string y, double num)
     {
-        Console.WriteLine(Math.Sqrt(x));
-        Continuo(x);
+        Console.WriteLine();
+        y = Console.ReadLine();
+        if (double.TryParse(y, out x))
+                Math.Sqrt(x);
+        Continuo(x,y,num);
     }
-    static void Operazioni(double x)
+    static void Operazioni(double x, string y, double num)
     {
+        double menu;
         Console.WriteLine("Scegliere un numero da 1 a 6");
         Console.WriteLine("1 Addizione");
         Console.WriteLine("2 Sottrazione");
@@ -92,37 +122,44 @@ class calcolatrice
         Console.WriteLine("4 Divisione");
         Console.WriteLine("5 Potenza");
         Console.WriteLine("6 Radice");
-        int menu = Convert.ToInt32(Console.ReadLine());
-        switch (menu)
+        y = Console.ReadLine();
+        if (double.TryParse(y, out menu))
         {
-            case 1:
-                Addizione(x);
-                break;
-            case 2:
-                Sottrazione(x);
-                break;
-            case 3:
-                Moltiplicazione(x);
-                break;
-            case 4:
-                Divisione(x);
-                break;
-            case 5:
-                Potenza(x);
-                break;
-            case 6:
-                Radice(x);
-                break;
+            switch (menu)
+            {
+                case 1:
+                    Addizione(x,y,num);
+                    break;
+                case 2:
+                    Sottrazione(x,y,num);
+                    break;
+                case 3:
+                    Moltiplicazione(x,y,num);
+                    break;
+                case 4:
+                    Divisione(x,y,num);
+                    break;
+                case 5:
+                    Potenza(x,y,num);
+                    break;
+                case 6:
+                    Radice(x,y,num);
+                    break;
+            }
+        }
+        else
+        {
+            Console.WriteLine("Numero errato");
         }
     }
     static void Main(string[] args)
     {
-        double x;
+        double x,num;
         Console.WriteLine("Inserire primo numero");
         string y = Console.ReadLine();
         if (double.TryParse(y, out x))
         {
-            Operazioni(x);
+            Operazioni(x, y, num);
         }
         else
         {
